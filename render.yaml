@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: qr-classmanager-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn qrclassmanager.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: qrclassmanager.settings
+      - key: PYTHON_VERSION
+        value: 3.11
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
